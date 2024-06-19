@@ -58,8 +58,8 @@ async def add_pig(name:str, session: Session= Depends(get_session)):
     return {"Piglet Added":piglet.name}
 
 @app.post('/wolves/add')
-def add_wolf(name:str, session:Session = Depends(get_session)):
-    wolf=Wolves(name=name)
+def add_wolf(wolf:Wolves, session:Session = Depends(get_session)):
+    wolf=Wolves(name=wolf.name)
     session.add(wolf)
     session.commit()
     return{"Wolf Added": wolf.name}
